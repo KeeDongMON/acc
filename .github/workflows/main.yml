@@ -13,12 +13,16 @@ jobs:
     runs-on: ubuntu-22.04
     steps:
       # 릴리즈 서버 헬스 체크 진행
-      - name: Release API Health Check
-        uses: jtalk/url-health-check-action@v3
+      - name: ping check
+        uses: hohoonsong/actions-ping-keeper@v1
         with:
           url: "https://www.awscloudclubs.kr/"
-          max-attempts: 3 # 시도 횟수
-          retry-delay: 1s # 시도 간격
+          max-attempts: '2'
+          retry-delay: '5'
+          follow-redirect: true
+          expected-status: 200,301
+          expected-header: content-type:nc_json
+          expected-body: key:r_*al*,one:c_two,three:ne_
 
       # 헬스 체크 결과 슬랙으로 연동
       - name: action-slack
