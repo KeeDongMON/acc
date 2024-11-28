@@ -21,7 +21,7 @@ jobs:
           retry-delay: '5'
           follow-redirect: true
           expected-status: 200,301
-          expected-header: content-type:nc_json
+          expected-header: content-type:application/json
           expected-body: key:r_*al*,one:c_two,three:ne_
 
       # 헬스 체크 결과 슬랙으로 연동
@@ -30,7 +30,7 @@ jobs:
         with:
           status: ${{ job.status }}
           author_name: ping-check
-          fields: assert-status, actual-status, actual-data # 보낼 정보들
+          fields: # 보낼 정보들
           github_token: ${{ secrets.ACCESS_TOKEN_GIT }}
 
         env:
