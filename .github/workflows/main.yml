@@ -29,8 +29,8 @@ jobs:
         uses: 8398a7/action-slack@v3
         with:
           status: ${{ job.status }}
-          author_name: Health-Check
-          fields: repo,message,commit,action,eventName,ref,workflow,job,took # 보낼 정보들
+          author_name: ping-check
+          fields: assert-status, actual-status, actual-data # 보낼 정보들
           github_token: ${{ secrets.ACCESS_TOKEN_GIT }}
 
         env:
